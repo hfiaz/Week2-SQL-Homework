@@ -1,0 +1,31 @@
+1.1: SELECT CustomerID, CompanyName, Address, City, Region, PostalCode, Country FROM Customers WHERE City ='Paris' OR City = 'London';
+
+1.2: SELECT * FROM Products WHERE QuantityPerUnit LIKE '%bottles';
+
+1.3: SELECT Suppliers.CompanyName, Suppliers.Country, Products.*
+FROM Products 
+INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID
+WHERE QuantityPerUnit LIKE '%bottles';
+
+1.4: SELECT COUNT(Categories.CategoryID) 'CategoryID', Categories.CategoryName FROM Categories 
+INNER JOIN Products ON Categories.CategoryID=Products.CategoryID
+GROUP BY Categories.CategoryName
+ORDER BY COUNT(Categories.CategoryID) DESC;
+
+1.5: SELECT CONCAT(TitleOfCourtesy, ' ', FirstName, ' ', LastName) AS 'Full Name & Title', City FROM Employees;
+
+1.6: 
+
+1.7: SELECT COUNT(OrderID) FROM Orders WHERE Freight > 100.00 AND ShipCountry IN ('USA', 'UK');
+
+1.8: SELECT OrderID, Discount FROM [Order Details] WHERE Discount = (SELECT MAX(Discount) FROM [Order Details])
+
+EXTRA TASK
+
+CREATE DATABASE Cricket_db
+
+CREATE TABLE WorldCupWinners (WorldCupID INT NOT NULL PRIMARY KEY, Team VARCHAR(255), Year DATE, Host VARCHAR(255));
+
+CREATE TABLE PakistanWorldCups 
+(PakID INT NOT NULL PRIMARY KEY, Year DATE, Host VARCHAR(255), 
+Captain VARCHAR(255), WCID INT FOREIGN KEY REFERENCES WorldCupWinners(WorldCupID));
